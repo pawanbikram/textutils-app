@@ -16,30 +16,35 @@ export default function TextField(props) {
         console.log("Upper Case");
         let newText = text.toUpperCase();
         setText(newText);
+        props.showAlert("Text Upper Cased", "success");
     }
 
     const handleLC = () => {
         console.log("Lower Case");
         let newText = text.toLowerCase();
         setText(newText);
+        props.showAlert("Text Lower Cased", "success");
     }
 
     const handleRC = () => {
         console.log("Reverse Case");
         let newText = text.split("").reverse().join("");
         setText(newText);
+        props.showAlert("Text Reversed", "success");
     }
 
     const handleCEFL = () => {
         console.log("Capitalize Each First Letter");
         let newText = text.split(" ").map((e) => { return e.charAt(0).toUpperCase() + e.slice(1).toLowerCase(); }).join(" ");
         setText(newText);
+        props.showAlert("Capitalized Each First Letter", "success");
     }
 
     const handleRES = () => {
         console.log("Remove Extra Space");
         let newText = text.split(/[ ]+/).join(" ");
         setText(newText);
+        props.showAlert("Text Extra Space Removed", "success");
     }
 
     const handleCopyT = () => {
@@ -47,12 +52,14 @@ export default function TextField(props) {
         let newText = document.getElementById("myBox");
         newText.select();
         navigator.clipboard.writeText(newText.value);
+        props.showAlert("Text Copied", "info");
     }
 
     const handleClearT = () => {
         console.log("Clear Text");
         let newText = "";
         setText(newText);
+        props.showAlert("Text Cleared", "danger");
     }
 
     return (
