@@ -2,9 +2,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Alert from './components/Alert';
 import TextField from './components/TextField';
-import About from './components/About';
 import { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
 
@@ -37,12 +35,6 @@ function App() {
       setBtn("light");
       showAlert("Dark Mode Enabled", "success");
       document.title = "Textutils - Dark Mode";
-      // setInterval(() => {
-      //   document.title = "Install Textutils Now";
-      // }, 1500);
-      // setInterval(() => {
-      //   document.title = "Textutils is an awesome utility";
-      // }, 1000)
     }
     else {
       setMode("light");
@@ -56,14 +48,9 @@ function App() {
 
   return (
     <>
-      <Router>
-        <Navbar title="Textutils" mode={mode} switchMode={switchMode} toggleMode={toggleMode} />
-        <Alert alert={alert} />
-        <Routes>
-          <Route path="/" element={<TextField mode={mode} btn={btn} showAlert={showAlert} />}></Route>
-          <Route path="/about" element={<About mode={mode} />}></Route>
-        </Routes>
-      </Router>
+      <Navbar title="Textutils" mode={mode} switchMode={switchMode} toggleMode={toggleMode} />
+      <Alert alert={alert} />
+      <TextField mode={mode} btn={btn} showAlert={showAlert} />
     </>
   );
 }
