@@ -52,6 +52,7 @@ export default function TextField(props) {
         let newText = document.getElementById("myBox");
         newText.select();
         navigator.clipboard.writeText(newText.value);
+        document.getSelection().removeAllRanges();
         props.showAlert("Text Copied", "info");
     }
 
@@ -66,34 +67,34 @@ export default function TextField(props) {
         <div className="container my-3" style={props.mode === "light" ? { color: "black" } : { color: "white" }}>
             <h2>{props.title}</h2>
             <div className="mb-3">
-                <textarea name="myBox" id="myBox" value={text} onChange={handleOnChange} cols="30" rows="10" className="form-control" style={props.mode === "light" ? { color: "black", backgroundColor: "white" } : { color: "white", backgroundColor: "grey" }}></textarea>
+                <textarea name="myBox" id="myBox" value={text} onChange={handleOnChange} cols="30" rows="10" className="form-control" style={props.mode === "light" ? { color: "black", backgroundColor: "white" } : { color: "white", backgroundColor: "#2e4995" }}></textarea>
             </div>
             <div className="mb-3">
-                <button className={`btn btn-sn btn-outline-${props.btn}`} onClick={handleUC}>Upper Case</button>
-                <button className={`btn btn-sn btn-outline-${props.btn} mx-2`} onClick={handleLC}>Lower Case</button>
-                <button className={`btn btn-sn btn-outline-${props.btn}`} onClick={handleRC}>Reverse Case</button>
-                <button className={`btn btn-sn btn-outline-${props.btn} mx-2`} onClick={handleCEFL}>Capitalize Each First Letter</button>
-                <button className={`btn btn-sn btn-outline-${props.btn}`} onClick={handleRES}>Remove Extra Space</button>
-                <button className={`btn btn-sn btn-outline-${props.btn} mx-2`} onClick={handleCopyT}>Copy Text</button>
-                <button className={`btn btn-sn btn-outline-${props.btn}`} onClick={handleClearT}>Clear Text</button>
+                <button disabled={text.length === 0} className={`btn btn-sn btn-outline-${props.btn} my-2`} onClick={handleUC}>Upper Case</button>
+                <button disabled={text.length === 0} className={`btn btn-sn btn-outline-${props.btn} mx-2 my-2`} onClick={handleLC}>Lower Case</button>
+                <button disabled={text.length === 0} className={`btn btn-sn btn-outline-${props.btn} my-2`} onClick={handleRC}>Reverse Case</button>
+                <button disabled={text.length === 0} className={`btn btn-sn btn-outline-${props.btn} mx-2 my-2`} onClick={handleCEFL}>Capitalize Each First Letter</button>
+                <button disabled={text.length === 0} className={`btn btn-sn btn-outline-${props.btn} my-2`} onClick={handleRES}>Remove Extra Space</button>
+                <button disabled={text.length === 0} className={`btn btn-sn btn-outline-${props.btn} mx-2 my-2`} onClick={handleCopyT}>Copy Text</button>
+                <button disabled={text.length === 0} className={`btn btn-sn btn-outline-${props.btn} my-2`} onClick={handleClearT}>Clear Text</button>
             </div>
             <div className="mb-3">
                 <h2>{props.summary}</h2>
                 {/* text.split(/\s/g).join("").length or text.replace(/\s/g, "").length */}
                 {/* {console.log(text.split(/\s/).filter((e)=>{return e !== "";}).length)} */}
                 <p>{text.split(/\s/).filter((e) => { return e !== ""; }).length} words, {text.length} characters and {text.split(/\s/g).join("").length} characters without white spaces.</p>
-                <p>{(text.length) * 0.008} minutes to read.</p>
+                <p>{(text.split(/\s/).filter((e) => { return e !== ""; }).length) * 0.008} minutes to read.</p>
             </div>
             <div className="mb-3">
                 <h2>Preview</h2>
-                <b>{text.length === 0 ? "Write something above in the Text Box to preview it here!" : text}</b>
+                <b>{text.length === 0 ? "Nothing to Preview!" : text}</b>
             </div>
         </div>
     )
 }
 
 TextField.defaultProps = {
-    title: "Enter The Text Below To Analyze",
+    title: "Word Manipulator",
     summary: "Text Summary"
 }
 
