@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export default function TextField(props) {
 
-    let initialText = "Enter the text here!";
+    let initialText = "";
     const [text, setText] = useState(initialText);
 
     const handleOnChange = (e) => {
@@ -49,10 +49,8 @@ export default function TextField(props) {
 
     const handleCopyT = () => {
         console.log("Copy Text");
-        let newText = document.getElementById("myBox");
-        newText.select();
-        navigator.clipboard.writeText(newText.value);
-        document.getSelection().removeAllRanges();
+        let newText = text;
+        navigator.clipboard.writeText(newText);
         props.showAlert("Text Copied", "info");
     }
 
@@ -67,7 +65,7 @@ export default function TextField(props) {
         <div className="container my-3" style={props.mode === "light" ? { color: "black" } : { color: "white" }}>
             <h2>{props.title}</h2>
             <div className="mb-3">
-                <textarea name="myBox" id="myBox" value={text} onChange={handleOnChange} cols="30" rows="10" className="form-control" style={props.mode === "light" ? { color: "black", backgroundColor: "white" } : { color: "white", backgroundColor: "#2e4995" }}></textarea>
+                <textarea name="myBox" id="myBox" value={text} onChange={handleOnChange} cols="30" rows="10" placeholder="Enter your text here!" className="form-control" style={props.mode === "light" ? { color: "black", backgroundColor: "white" } : { color: "white", backgroundColor: "#2e4995" }}></textarea>
             </div>
             <div className="mb-3">
                 <button disabled={text.length === 0} className={`btn btn-sn btn-outline-${props.btn} my-2`} onClick={handleUC}>Upper Case</button>
@@ -82,8 +80,8 @@ export default function TextField(props) {
                 <h2>{props.summary}</h2>
                 {/* text.split(/\s/g).join("").length or text.replace(/\s/g, "").length */}
                 {/* {console.log(text.split(/\s/).filter((e)=>{return e !== "";}).length)} */}
-                <p>{text.split(/\s/).filter((e) => { return e !== ""; }).length} words, {text.length} characters and {text.split(/\s/g).join("").length} characters without white spaces.</p>
-                <p>{(text.split(/\s/).filter((e) => { return e !== ""; }).length) * 0.008} minutes to read.</p>
+                <p>{text.split(/\s+/).filter((e) => { return e !== ""; }).length} words, {text.length} characters and {text.split(/\s/g).join("").length} characters without white spaces.</p>
+                <p>{(text.split(/\s+/).filter((e) => { return e !== ""; }).length) * 0.008} minutes to read.</p>
             </div>
             <div className="mb-3">
                 <h2>Preview</h2>
