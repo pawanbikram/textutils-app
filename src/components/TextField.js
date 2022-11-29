@@ -68,13 +68,13 @@ export default function TextField(props) {
                 <textarea name="myBox" id="myBox" value={text} onChange={handleOnChange} cols="30" rows="10" placeholder="Enter your text here!" className="form-control" style={props.mode === "light" ? { color: "black", backgroundColor: "white" } : { color: "white", backgroundColor: "#2e4995" }}></textarea>
             </div>
             <div className="mb-3">
-                <button disabled={text.length === 0} className={`btn btn-sn btn-outline-${props.btn} my-2`} onClick={handleUC}>Upper Case</button>
-                <button disabled={text.length === 0} className={`btn btn-sn btn-outline-${props.btn} mx-2 my-2`} onClick={handleLC}>Lower Case</button>
-                <button disabled={text.length === 0} className={`btn btn-sn btn-outline-${props.btn} my-2`} onClick={handleRC}>Reverse Case</button>
-                <button disabled={text.length === 0} className={`btn btn-sn btn-outline-${props.btn} mx-2 my-2`} onClick={handleCEFL}>Capitalize Each First Letter</button>
-                <button disabled={text.length === 0} className={`btn btn-sn btn-outline-${props.btn} my-2`} onClick={handleRES}>Remove Extra Space</button>
-                <button disabled={text.length === 0} className={`btn btn-sn btn-outline-${props.btn} mx-2 my-2`} onClick={handleCopyT}>Copy Text</button>
-                <button disabled={text.length === 0} className={`btn btn-sn btn-outline-${props.btn} my-2`} onClick={handleClearT}>Clear Text</button>
+                <button disabled={text.length === 0} className={`btn btn-outline-${props.btn} my-2`} onClick={handleUC}>Upper Case</button>
+                <button disabled={text.length === 0} className={`btn btn-outline-${props.btn} mx-2 my-2`} onClick={handleLC}>Lower Case</button>
+                <button disabled={text.length === 0} className={`btn btn-outline-${props.btn} my-2`} onClick={handleRC}>Reverse Case</button>
+                <button disabled={text.length === 0} className={`btn btn-outline-${props.btn} mx-2 my-2`} onClick={handleCEFL}>Capitalize Each First Letter</button>
+                <button disabled={text.length === 0} className={`btn btn-outline-${props.btn} my-2`} onClick={handleRES}>Remove Extra Space</button>
+                <button disabled={text.length === 0} className={`btn btn-outline-${props.btn} mx-2 my-2`} onClick={handleCopyT}>Copy Text</button>
+                <button disabled={text.length === 0} className={`btn btn-outline-${props.btn} my-2`} onClick={handleClearT}>Clear Text</button>
             </div>
             <div className="mb-3">
                 <h2>{props.summary}</h2>
